@@ -91,4 +91,4 @@ function shuffleArray(d) {
     }
     return d
 }
-localStorage.setItem('your time', timer)
+//localStorage.setItem('your time', timer)
