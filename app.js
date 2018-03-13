@@ -28,9 +28,10 @@ function startGame() {
     score = 0;
     gameboard.innerHTML = "";
     buttonmessage.innerHTML = "Restart Game";
+
     messageText("Click a Tile to start");
     for (let i = 0; i <= ((solutionArray.length) - 1); i++) {
-        gameboard.innerHTML += '<div class="col-md-3 col-xs-4 gametile"><img id="cardz' + i + '" src="img" onclick="pickCard(\'' + solutionArray[i] + '\',\'' + i + '\',this);return false;" class="flipimage"></div>';
+        gameboard.innerHTML += '<div class="col-md-3 col-xs-4 gametile"><img id="cardz' + i + '" src="img/galvanize.png" onclick="pickCard(\'' + solutionArray[i] + '\',\'' + i + '\',this);return false;" class="flipimage"></div>';
     }
 }
 
@@ -82,6 +83,7 @@ function addTime() {
             hours++;
         }
     }
+
     mytime.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
     timerX();
 }
@@ -94,11 +96,11 @@ function gameDone() {
     if (gamescore < 0) {
         gamescore = 0;
     }
-    
+
 
     buttonmessage.innerHTML = "Click to Play Again";
 
-    window.alert("GAME OVER." + " You scored = " + gamescore );
+    window.alert("GAME OVER!!!" + " You scored = " + gamescore );
 }
 
 
