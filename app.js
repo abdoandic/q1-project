@@ -30,7 +30,7 @@ function startGame() {
     buttonmessage.innerHTML = "Restart Game";
     messageText("Click a Tile to start");
     for (let i = 0; i <= ((solutionArray.length) - 1); i++) {
-        gameboard.innerHTML += '<div class="col-md-3 col-xs-4 gametile"><img id="cardz' + i + '" src="galvanize.png" onclick="pickCard(\'' + solutionArray[i] + '\',\'' + i + '\',this);return false;" class="flipimage"></div>';
+        gameboard.innerHTML += '<div class="col-md-3 col-xs-4 gametile"><img id="cardz' + i + '" src="img" onclick="pickCard(\'' + solutionArray[i] + '\',\'' + i + '\',this);return false;" class="flipimage"></div>';
     }
 }
 
@@ -86,14 +86,30 @@ function addTime() {
     timerX();
 }
 
-
-
-
-
-
 function timerX() {
     t = setTimeout(addTime, 2000);
 }
+
+function gameDone() {
+    if (gamescore < 0) {
+        gamescore = 0;
+    }
+    
+
+    buttonmessage.innerHTML = "Click to Play Again";
+
+    window.alert("GAME OVER." + " You scored = " + gamescore );
+}
+
+
+function pickagain() {
+    cardsflippedover = 0;
+    fliparray = [];
+    lastcardpicked = -1;
+    clearInterval(timer);
+}
+
+
 function hideCard() {
     console.log(fliparray);
     if (fliparray[2]) {
@@ -113,4 +129,3 @@ function shuffleArray(d) {
     }
     return d
 }
-//localStorage.setItem('your time', timer)
