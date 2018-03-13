@@ -15,6 +15,7 @@ let hours = 0
 let t =100
 let gamescore = 100;
 let solutionArray = tileImages.concat(tileImages);
+
 document.getElementById("gamecontrol").addEventListener("click", startGame);
 fliparray = new Array();
 startGame();
@@ -32,6 +33,42 @@ function startGame() {
         gameboard.innerHTML += '<div class="col-md-3 col-xs-4 gametile"><img id="cardz' + i + '" src="galvanize.png" onclick="pickCard(\'' + solutionArray[i] + '\',\'' + i + '\',this);return false;" class="flipimage"></div>';
     }
 }
+
+
+function pickCard(a, b, c) {
+    if (cardsflippedover < 2 && lastcardpicked != b) {
+        fliparray[cardsflippedover] = solutionArray[b];
+        fliparray[(cardsflippedover + 2)] = c.id;
+        cardsflippedover++;
+        c.src = 'img/' + solutionArray[b];
+        if (cardsflippedover == 2) {
+            if (fliparray[0] == fliparray[1]) {
+                messageText("Match FOUND");
+                console.log('same');
+                pickagain();
+                score++;
+                if (tileImages.length <= score) {
+                    console.log('END GAME');
+                    gameDone();
+                }
+            }
+            else {
+                timer = setInterval(hideCard, 2000);
+                console.log('different');
+                messageText("NOT FOUND");
+            }
+        }
+        lastcardpicked = b;
+    }
+}
+
+
+
+
+
+
+
+
 function timerX() {
     t = setTimeout(addTime, 2000);
 }
