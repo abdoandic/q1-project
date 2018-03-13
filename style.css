@@ -29,17 +29,3 @@
     text-align: center;
     font-size: 1.5em;
 }
-
-.gameboard {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-}
-
-main {
-  flex: 1 0 auto;
-}
-
-.typo {
-  font-family: 'Playfair Display', serif;
-}
