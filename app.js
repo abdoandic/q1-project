@@ -62,7 +62,29 @@ function pickCard(a, b, c) {
     }
 }
 
+function messageText(message) {
+    clearInterval(mess);
+    console.log('message');
+    messageTop.innerHTML = message;
+    if (message != 'Find a match') {
+        mess = setInterval(messageText, 2000, 'Find a match');
+    }
+}
 
+function addTime() {
+    gamescore--;
+    seconds++;
+    if (seconds >= 60) {
+        seconds = 0;
+        minutes++;
+        if (minutes >= 60) {
+            minutes = 0;
+            hours++;
+        }
+    }
+    mytime.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+    timerX();
+}
 
 
 
