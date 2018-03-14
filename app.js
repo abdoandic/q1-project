@@ -31,7 +31,7 @@ function startGame() {
 
     messageText("Click a Tile to start");
     for (let i = 0; i <= ((solutionArray.length) - 1); i++) {
-        gameboard.innerHTML += '<div class="col-md-3 col-xs-4 gametile"><img id="cardz' + i + '" src="img/galvanize.png" onclick="pickCard(\'' + solutionArray[i] + '\',\'' + i + '\',this);return false;" class="flipimage"></div>';
+        gameboard.innerHTML += '<div class="col-md-4 col-xs-4 gametile"><img id="cardz' + i + '" src="img/galvanize.png" onclick="pickCard(\'' + solutionArray[i] + '\',\'' + i + '\',this);return false;" class="flipimage"></div>';
     }
 }
 
@@ -54,7 +54,7 @@ function pickCard(a, b, c) {
                 }
             }
             else {
-                timer = setInterval(hideCard, 2000);
+                timer = setInterval(hideCard, 1000);
                 console.log('different');
                 messageText("NOT FOUND");
             }
@@ -101,6 +101,8 @@ function gameDone() {
     buttonmessage.innerHTML = "Click to Play Again";
 
     window.alert("GAME OVER!!!" + " You scored = " + gamescore );
+
+
 }
 
 
