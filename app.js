@@ -13,8 +13,9 @@ let mseconds = 0
 let minutes = 0
 let hours = 0
 let t =100
-let gamescore = 100;
+let gameScore = 100;
 let solutionArray = tileImages.concat(tileImages);
+let highScore = ''
 
 document.getElementById("gamecontrol").addEventListener("click", startGame);
 fliparray = new Array();
@@ -86,6 +87,7 @@ function addTime() {
 
     mytime.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
     timerX();
+
 }
 
 function timerX() {
@@ -97,12 +99,20 @@ function gameDone() {
         gamescore = 0;
     }
 
-
     buttonmessage.innerHTML = "Click to Play Again";
 
     window.alert("GAME OVER!!!" + " You scored = " + gamescore );
 
+  let highScore = localStorage.setItem('your score', gamescore );
 
+function checkScore(score){
+  if (highScore > gamescore){
+    highScore = gamescore
+    return highScore;
+  } else{
+    return highScore;
+  }
+}checkScore();
 }
 
 
