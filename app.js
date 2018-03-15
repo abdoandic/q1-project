@@ -30,12 +30,11 @@ function shuffleArray(d) {
     return d
 }
 
+// game conntol button
 
 document.getElementById("gamecontrol").addEventListener("click", startGame);
 fliparray = new Array();
 startGame();
-
-
 
 
 function pickCard(a, b, c) {
@@ -93,15 +92,23 @@ function messageText(message) {
     }
 }
 
+//  time adding function
+function timerX() {
+    t = setTimeout(addTime, 2000);
+}
 
 function addTime() {
     gamescore--;
+
+  document.querySelector('#score').innerHTML = gamescore
+
     seconds++;
     if (seconds >= 60) {
         seconds = 0;
         minutes++;
 
     }
+
 
  mytime.textContent = (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
 
@@ -110,10 +117,7 @@ function addTime() {
 
 }
 
-//  time adding function
-function timerX() {
-    t = setTimeout(addTime, 2000);
-}
+
 // game done , player will score 0 when the  time (100 seconds) up
 function gameDone() {
     if (gamescore < 0) {
