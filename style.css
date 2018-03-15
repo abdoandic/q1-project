@@ -1,11 +1,9 @@
-
-.wrapper{ width: 800px;
-  margin: 0 auto;
-  background-color: #bdd3de; }
-
+#wrapper {
+    width: 800px;
+    margin: 0 auto;
+}
   body {
   	background-color: #ecf0f1;
-  	margin: 20px;
   	font-family: Arial, Tahoma;
   	font-size: 20px;
   	color: #666666;
@@ -15,7 +13,7 @@
 
 .gametile {
     height: 150px;
-    width: 32%;
+    width: 33.3%;
     border: #FFF 1px solid;
 }
 
@@ -37,9 +35,11 @@
 
 #message {
     font-size: 1.5em;
+    width: 800px;
+    margin: 0 auto;
     color: #D1090C;
     background: #D9D9D9;
-    text-align: center;
+
 }
 
 #mytime {

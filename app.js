@@ -30,7 +30,7 @@ function startGame() {
     gameboard.innerHTML = "";
     buttonmessage.innerHTML = "Restart Game";
 
-    messageText("Click a Tile to start");
+    messageText("Click any tile to start");
     for (let i = 0; i <= ((solutionArray.length) - 1); i++) {
         gameboard.innerHTML += '<div class="col-md-4 col-xs-4 gametile"><img id="cardz' + i + '" src="img/galvanize.png" onclick="pickCard(\'' + solutionArray[i] + '\',\'' + i + '\',this);return false;" class="flipimage"></div>';
     }
