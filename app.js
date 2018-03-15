@@ -7,6 +7,7 @@ let cardsflippedover = 0
 let lastcardpicked = -1
 let timer = ''
 let score = 0
+let moves = 0
 let mess = ''
 let seconds = 0
 let mseconds = 0
@@ -85,8 +86,10 @@ function addTime() {
         }
     }
 
-    mytime.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+ mytime.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+
     timerX();
+
 
 }
 
