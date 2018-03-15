@@ -3,6 +3,7 @@ let gameboard = document.getElementById("gameboard");
 let messageTop = document.getElementById("message");
 let buttonmessage = document.getElementById("gamecontrol");
 let mytime = document.getElementById("mytime");
+let myscore = document.querySelector('#score');
 let cardsflippedover = 0
 let lastcardpicked = -1
 let timer = ''
@@ -21,6 +22,7 @@ let highScore = ''
 //  shuffle the cards all the time reload the page
 
 function shuffleArray(d) {
+
     for (let c = d.length - 1; c > 0; c--) {
         let b = Math.floor(Math.random() * (c + 1));
         let a = d[c];
@@ -29,10 +31,10 @@ function shuffleArray(d) {
     }
     return d
 }
-
 // game conntol button
 
 document.getElementById("gamecontrol").addEventListener("click", startGame);
+
 fliparray = new Array();
 startGame();
 
@@ -94,13 +96,13 @@ function messageText(message) {
 
 //  time adding function
 function timerX() {
-    t = setTimeout(addTime, 2000);
+    t = setTimeout(addTime, 1000);
 }
 
 function addTime() {
     gamescore--;
 
-  document.querySelector('#score').innerHTML = gamescore
+  myscore.innerHTML ="Score : " +gamescore
 
     seconds++;
     if (seconds >= 60) {
@@ -110,7 +112,7 @@ function addTime() {
     }
 
 
- mytime.textContent = (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+ mytime.textContent = "Time : "+ (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
 
     timerX();
 
@@ -124,11 +126,13 @@ function gameDone() {
         gamescore = 0;
     }
 
+     messageText("GAME OVER!!!");
+
     buttonmessage.innerHTML = "Click to Play Again";
 
-    window.alert("GAME OVER!!!" + " You scored = " + gamescore );
+    window.alert("GAME OVER!!!" + " You scored " + gamescore );
 
-  let highScore = localStorage.setItem('your score', gamescore );
+    localStorage.setItem('your score', gamescore );
 
 function checkScore(score){
   if (highScore > gamescore){
@@ -139,11 +143,6 @@ function checkScore(score){
   }
 }checkScore();
 }
-
-
-
-
-
 
 function startGame() {
     clearInterval(timer);
@@ -157,12 +156,5 @@ function startGame() {
     messageText("Click any tile to start");
     for (let i = 0; i <= ((solutionArray.length) - 1); i++) {
         gameboard.innerHTML += '<div class="col-md-4 col-xs-4 gametile"><img id="cardz' + i + '" src="img/galvanize.png" onclick="pickCard(\'' + solutionArray[i] + '\',\'' + i + '\',this);return false;" class="flipimage"></div>';
-    }
-}
-
-
-function resetTimer(timer) {
-    if (timer) {
-        clearInterval(timer);
     }
 }
