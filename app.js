@@ -18,24 +18,24 @@ let gameScore = 100;
 let solutionArray = tileImages.concat(tileImages);
 let highScore = ''
 
+//  shuffle the cards all the time reload the page
+
+function shuffleArray(d) {
+    for (let c = d.length - 1; c > 0; c--) {
+        let b = Math.floor(Math.random() * (c + 1));
+        let a = d[c];
+        d[c] = d[b];
+        d[b] = a;
+    }
+    return d
+}
+
+
 document.getElementById("gamecontrol").addEventListener("click", startGame);
 fliparray = new Array();
 startGame();
 
-function startGame() {
-    clearInterval(timer);
-    timerX();
-    seconds = 0, mseconds = 0, minutes = 0, hours = 0, gamescore = 100;
-    shuffleArray(solutionArray);
-    score = 0;
-    gameboard.innerHTML = "";
-    buttonmessage.innerHTML = "Restart Game";
 
-    messageText("Click any tile to start");
-    for (let i = 0; i <= ((solutionArray.length) - 1); i++) {
-        gameboard.innerHTML += '<div class="col-md-4 col-xs-4 gametile"><img id="cardz' + i + '" src="img/galvanize.png" onclick="pickCard(\'' + solutionArray[i] + '\',\'' + i + '\',this);return false;" class="flipimage"></div>';
-    }
-}
 
 
 function pickCard(a, b, c) {
@@ -65,6 +65,25 @@ function pickCard(a, b, c) {
     }
 }
 
+function hideCard() {
+    console.log(fliparray);
+    if (fliparray[2]) {
+        document.getElementById(fliparray[2]).src = "img/galvanize.png";
+    }
+    if (fliparray[3]) {
+        document.getElementById(fliparray[3]).src = "img/galvanize.png";
+    }
+    pickagain();
+}
+
+function pickagain() {
+    cardsflippedover = 0;
+    fliparray = [];
+    lastcardpicked = -1;
+    clearInterval(timer);
+}
+
+
 function messageText(message) {
     clearInterval(mess);
     console.log('message');
@@ -74,29 +93,28 @@ function messageText(message) {
     }
 }
 
+
 function addTime() {
     gamescore--;
     seconds++;
     if (seconds >= 60) {
         seconds = 0;
         minutes++;
-        if (minutes >= 60) {
-            minutes = 0;
-            hours++;
-        }
+
     }
 
- mytime.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+ mytime.textContent = (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
 
     timerX();
 
 
 }
 
+//  time adding function
 function timerX() {
     t = setTimeout(addTime, 2000);
 }
-
+// game done , player will score 0 when the  time (100 seconds) up
 function gameDone() {
     if (gamescore < 0) {
         gamescore = 0;
@@ -119,30 +137,28 @@ function checkScore(score){
 }
 
 
-function pickagain() {
-    cardsflippedover = 0;
-    fliparray = [];
-    lastcardpicked = -1;
+
+
+
+
+function startGame() {
     clearInterval(timer);
+    timerX();
+    seconds = 0, mseconds = 0, minutes = 0, hours = 0, gamescore = 100;
+    shuffleArray(solutionArray);
+    score = 0;
+    gameboard.innerHTML = "";
+    buttonmessage.innerHTML = "Restart Game";
+
+    messageText("Click any tile to start");
+    for (let i = 0; i <= ((solutionArray.length) - 1); i++) {
+        gameboard.innerHTML += '<div class="col-md-4 col-xs-4 gametile"><img id="cardz' + i + '" src="img/galvanize.png" onclick="pickCard(\'' + solutionArray[i] + '\',\'' + i + '\',this);return false;" class="flipimage"></div>';
+    }
 }
 
 
-function hideCard() {
-    console.log(fliparray);
-    if (fliparray[2]) {
-        document.getElementById(fliparray[2]).src = "img/galvanize.png";
+function resetTimer(timer) {
+    if (timer) {
+        clearInterval(timer);
     }
-    if (fliparray[3]) {
-        document.getElementById(fliparray[3]).src = "img/galvanize.png";
-    }
-    pickagain();
-}
-function shuffleArray(d) {
-    for (let c = d.length - 1; c > 0; c--) {
-        let b = Math.floor(Math.random() * (c + 1));
-        let a = d[c];
-        d[c] = d[b];
-        d[b] = a;
-    }
-    return d
 }
