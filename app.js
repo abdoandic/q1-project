@@ -13,12 +13,33 @@ let mess = ''
 let seconds = 0
 let mseconds = 0
 let minutes = 0
-let hours = 0
-let t =100
 let gameScore = 100;
 let solutionArray = tileImages.concat(tileImages);
 let highScore = ''
 
+function startGame() {
+    // clearInterval(timer);
+    // timerX();
+    //seconds = 0, mseconds = 0, minutes = 0, hours = 0, gamescore = 100;
+    shuffleArray(solutionArray);
+    score = 0;
+    gameboard.innerHTML = "";
+    buttonmessage.innerHTML = "Restart Game";
+
+    messageText("Click to Start...");
+    for (let i = 0; i <= ((solutionArray.length) - 1); i++) {
+        gameboard.innerHTML += '<div class="col-md-4 col-xs-4 gametile"><img id="cardz' + i + '" src="img/galvanize.png" onclick="pickCard(\'' + solutionArray[i] + '\',\'' + i + '\',this);return false;" class="flipimage"></div>';
+    }
+}
+
+function startTimer(){
+  clearInterval(timer);
+  timerX();
+  seconds = 0, mseconds = 0, minutes = 0, hours = 0, gamescore = 100;
+  window.removeEventListener("click", startTimer)
+
+}
+window.addEventListener("click", startTimer);
 //  shuffle the cards all the time reload the page
 
 function shuffleArray(d) {
@@ -31,13 +52,9 @@ function shuffleArray(d) {
     }
     return d
 }
-// game conntol button
-
-document.getElementById("gamecontrol").addEventListener("click", startGame);
 
 fliparray = new Array();
 startGame();
-
 
 function pickCard(a, b, c) {
     if (cardsflippedover < 2 && lastcardpicked != b) {
@@ -89,8 +106,8 @@ function messageText(message) {
     clearInterval(mess);
     console.log('message');
     messageTop.innerHTML = message;
-    if (message != 'Find a match') {
-        mess = setInterval(messageText, 2000, 'Find a match');
+    if (message != 'GOOOO!!!') {
+        mess = setInterval(messageText, 2000, 'GOOOO!!!');
     }
 }
 
@@ -111,16 +128,14 @@ function addTime() {
 
     }
 
-
  mytime.textContent = "Time : "+ (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
 
     timerX();
 
-
 }
 
 
-// game done , player will score 0 when the  time (100 seconds) up
+// game done , player will score 0 if the  time (100 seconds) up
 function gameDone() {
     if (gamescore < 0) {
         gamescore = 0;
@@ -141,20 +156,6 @@ function checkScore(score){
   } else{
     return highScore;
   }
-}checkScore();
+} return checkScore();
 }
-
-function startGame() {
-    clearInterval(timer);
-    timerX();
-    seconds = 0, mseconds = 0, minutes = 0, hours = 0, gamescore = 100;
-    shuffleArray(solutionArray);
-    score = 0;
-    gameboard.innerHTML = "";
-    buttonmessage.innerHTML = "Restart Game";
-
-    messageText("Click any tile to start");
-    for (let i = 0; i <= ((solutionArray.length) - 1); i++) {
-        gameboard.innerHTML += '<div class="col-md-4 col-xs-4 gametile"><img id="cardz' + i + '" src="img/galvanize.png" onclick="pickCard(\'' + solutionArray[i] + '\',\'' + i + '\',this);return false;" class="flipimage"></div>';
-    }
-}
+localStorage.setItem('higher score', score);
